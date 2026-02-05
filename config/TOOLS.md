@@ -37,4 +37,14 @@ Skills are shared. Your setup is yours. Keeping them apart means you can update 
 
 ---
 
+## 📊 Report Generation
+
+### HTML Reports
+- **Framework:** Use shadcn/ui components for professional, modern look
+- **Style:** Clean, minimal, executive-friendly
+- **Format:** Single-file HTML with embedded CSS (no external dependencies)
+- **Output:** Save to Desktop for easy sharing
+
+---
+
 Add whatever helps you do your job. This is your cheat sheet.
