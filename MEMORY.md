@@ -23,6 +23,13 @@
 
 ### Daily Activity Tracking:
 
+- **2026-02-05:** Production Readiness & Admin Portal (Day 4)
+  - SFD Pocket: CI/CD pipeline, security scanning, camera v0.2.0
+  - OneLearn Platform: Admin portal with Google OAuth, Tauri app, CLI tool
+  - Workspace: Port management registry for 6 projects
+  - 17 commits, 12,000+ lines added across 3 repos
+  - See ACTIVITY_LOG_2026-02-05.md for full details
+
 - **2026-02-04:** Infrastructure & Platform Foundation (Day 3)
   - Core infrastructure: MongoDB, MySQL, PostgreSQL, Nginx deployed
   - Dev services: Redis, Kafka, RabbitMQ, Elasticsearch, ClickHouse, Prometheus, Grafana
@@ -131,6 +138,36 @@ docker compose -f docker-compose.dev.yml up -d
 **Role:** Lead Software Engineer  
 **Trial Period:** 119 days (started 2026-02-02)  
 **Reports to:** Director & CTO (monthly)
+
+### Team Composition (Adobe Creative Types) - Updated 2026-02-05
+
+| Role | Nick Name | Email | Birth Year | Gender | Creative Type | Strengths |
+|------|-----------|-------|------------|--------|---------------|-----------|
+| Director | Games | games@onelearn.co | 1994 | Male | The Guide | Leadership, vision, direction |
+| Lead Software Engineer | Tonkla | tonkla@onelearn.co | 1990 | Male | The Architect | System design, structure, planning |
+| Project Manager | Ploy | ploy@onelearn.co | 1992 | Female | The Regenerator | Improvement, problem-solving |
+| Project Manager | Pam | pam@onelearn.co | 1999 | Female | The Architect | System design, structure |
+| Project Manager | Alok | alok@onelearn.co | 2001 | Male | The Architect | System design, structure |
+| Project Coordinator | Dew | dew@onelearn.co | 1996 | Female | The Guide | Coordination, communication |
+| UX/UI Designer | M | m@onelearn.co | 1998 | Male | The Regenerator | Refinement, quality |
+| UX/UI Designer | Phear | phear@onelearn.co | 2001 | Female | The Gardener | Growth, nurturing |
+| Developer | Ta | ta@onelearn.co | 2002 | Male | The Regenerator | Improvement, problem-solving |
+| Developer | Off | off@onelearn.co | 2000 | Male | The Architect | System design, structure |
+
+**Type Distribution:**
+- The Architect: 4 (Tonkla, Pam, Alok, Off) - Heavy on system/structure
+- The Regenerator: 3 (Ploy, M, Ta) - Good for improvement cycles
+- The Guide: 2 (Games, Dew) - Good for leadership/coordination
+- The Gardener: 1 (Phear) - Growth mindset
+
+**Missing Types (Gaps):**
+- **Artist** - Innovation, wild ideas, experimentation
+- **Adventurer** - Risk-taking, new tech exploration
+- **Warrior** - Execution pressure, deadline driving
+
+**Recommendations:**
+- If no Warrior found, Games should drive deadlines more aggressively
+- If no Artist found, encourage Phear (Gardener) to explore creative ideas
 
 ### Priority Documents:
 1. **TRIAL_90DAYS.md** - Daily/weekly guide for first 3 months
