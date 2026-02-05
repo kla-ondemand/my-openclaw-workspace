@@ -205,6 +205,66 @@
 
 ---
 
+## 👥 OneLearn Team Analysis (Adobe Creative Types)
+
+Completed comprehensive team analysis using Adobe Creative Types framework to understand team composition and dynamics.
+
+### Team Composition
+
+| Role | Name | Birth | Gender | Creative Type | Strengths |
+|------|------|-------|--------|---------------|-----------|
+| Director | Games | 1994 | Male | **The Guide** | Leadership, vision, direction |
+| Lead Software Engineer | Tonkla | 1990 | Male | **The Architect** | System design, structure, planning |
+| Project Manager | Ploy | 1992 | Female | **The Regenerator** | Improvement, problem-solving |
+| Project Manager | Pam | 1999 | Female | **The Architect** | System design, structure |
+| Project Manager | Alok | 2001 | Male | **The Architect** | System design, structure |
+| Project Coordinator | Dew | 1996 | Female | **The Guide** | Coordination, communication |
+| UX/UI Designer | M | 1998 | Male | **The Regenerator** | Refinement, quality |
+| UX/UI Designer | Phear | 2001 | Female | **The Gardener** | Growth, nurturing |
+| Developer | Ta | 2002 | Male | **The Regenerator** | Improvement, problem-solving |
+| Developer | Off | 2000 | Male | **The Architect** | System design, structure |
+
+### Type Distribution Analysis
+
+| Type | Count | % | Description |
+|------|-------|---|-------------|
+| **The Architect** | 4 | 40% | Heavy on system/structure - good for technical foundation |
+| **The Regenerator** | 3 | 30% | Strong improvement/quality focus - iterative excellence |
+| **The Guide** | 2 | 20% | Leadership/coordination - direction setting |
+| **The Gardener** | 1 | 10% | Growth mindset - team nurturing |
+| **Artist** | 0 | 0% | ⚠️ Gap: Innovation, wild ideas, experimentation |
+| **Adventurer** | 0 | 0% | ⚠️ Gap: Risk-taking, new tech exploration |
+| **Warrior** | 0 | 0% | ⚠️ Gap: Execution pressure, deadline driving |
+
+### Key Insights
+
+**Strengths:**
+- Strong technical foundation (4 Architects including Tonkla)
+- Continuous improvement culture (3 Regenerators)
+- Clear leadership direction (2 Guides)
+- Good for iterative development and quality focus
+
+**Gaps (Critical for High-Performance Teams):**
+- **No Artist** - May lack breakthrough innovation, experimental thinking
+- **No Adventurer** - May be conservative with new technology adoption
+- **No Warrior** - May struggle with deadline pressure and aggressive execution
+
+### Recommendations
+
+1. **If no Warrior found:** Games (Director/Guide) should drive deadlines more aggressively
+2. **If no Artist found:** Encourage Phear (Gardener) to explore creative/experimental ideas
+3. **Team balance:** Consider adding an Artist or Adventurer for innovation injection
+4. **Leverage strengths:** Use the high Architect count for system design phases
+
+### Communication Strategy
+
+- **With Architects:** Focus on structure, planning, system design
+- **With Regenerators:** Frame as improvements, quality enhancements
+- **With Guides:** Provide vision context, strategic alignment
+- **With Gardener:** Emphasize team growth, skill development
+
+---
+
 ## 💾 Repository Locations
 
 - **SFD Pocket:** `~/repos/sfd-pocket-poc/`
