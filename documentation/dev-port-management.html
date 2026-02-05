@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Port Management</title>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 222.2 47.4% 11.2%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96.1%;
+            --secondary-foreground: 222.2 47.4% 11.2%;
+            --muted: 210 40% 96.1%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96.1%;
+            --accent-foreground: 222.2 47.4% 11.2%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 222.2 84% 4.9%;
+            --radius: 0.5rem;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: hsl(var(--background));
+            color: hsl(var(--foreground));
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; }
+        
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: hsl(var(--primary));
+        }
+        
+        .subtitle {
+            color: hsl(var(--muted-foreground));
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .card {
+            background: hsl(var(--card));
+            border: 1px solid hsl(var(--border));
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+            margin: 1rem 0;
+        }
+        
+        th {
+            background: hsl(var(--muted));
+            font-weight: 600;
+            text-align: left;
+            padding: 0.75rem;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        
+        tr:last-child td { border-bottom: none; }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .badge-secondary {
+            background: hsl(var(--secondary));
+            color: hsl(var(--secondary-foreground));
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .port-card {
+            background: hsl(var(--secondary));
+            border-radius: var(--radius);
+            padding: 1rem;
+            border: 1px solid hsl(var(--border));
+        }
+        
+        .port-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(var(--primary));
+        }
+        
+        .port-meta {
+            font-size: 0.875rem;
+            color: hsl(var(--muted-foreground));
+        }
+        
+        .code-block {
+            background: hsl(var(--muted));
+            border-radius: var(--radius);
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .code-block .comment {
+            color: hsl(var(--muted-foreground));
+        }
+        
+        .alert {
+            background: hsl(var(--accent));
+            border-left: 4px solid hsl(var(--primary));
+            padding: 1rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1rem 0;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        li { margin-bottom: 0.5rem; }
+        
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid hsl(var(--border));
+            color: hsl(var(--muted-foreground));
+            font-size: 0.875rem;
+        }
+        
+        @media print {
+            body { padding: 1rem; }
+            .card { break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Development Port Management</h1>
+        <p class="subtitle">Central registry for development server ports across all projects</p>
+
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v18h18"></path>
+                    <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"></path>
+                </svg>
+                <span class="card-title">Quick Reference</span>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Project</th>
+                    <th>Port</th>
+                    <th>Service</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>ondemand-team-sync</td>
+                    <td><strong>3900-3950</strong></td>
+                    <td>Next.js Dev Server</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td>onelearn-platform-foundation</td>
+                    <td><strong>3000-3010</strong></td>
+                    <td>Various Services</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td>sfd-pocket-poc</td>
+                    <td><strong>3000</strong></td>
+                    <td>Next.js Dev</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                </tr>
+                <tr>
+                    <td>my-performance-portfolio</td>
+                    <td>TBD</td>
+                    <td>-</td>
+                    <td><span class="badge badge-secondary">Planning</span></td>
+                </tr>
+                <tr>
+                    <td>onelearn-bots</td>
+                    <td>TBD</td>
+                    <td>-</td>
+                    <td><span class="badge badge-secondary">Planning</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>Port Allocation Strategy</h2>
+
+        <div class="grid">
+            <div class="port-card">
+                <div class="port-number">3000-3010</div>
+                <div class="port-meta">Primary Frontend Apps</div>
+            </div>
+            <div class="port-card">
+                <div class="port-number">3900-3950</div>
+                <div class="port-meta">Team Sync Platform</div>
+            </div>
+            <div class="port-card">
+                <div class="port-number">5000-5010</div>
+                <div class="port-meta">Backend APIs</div>
+            </div>
+            <div class="port-card">
+                <div class="port-number">8000-8010</div>
+                <div class="port-meta">Documentation</div>
+            </div>
+        </div>
+
+        <h2>Project Details</h2>
+
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                </svg>
+                <span class="card-title">ondemand-team-sync</span>
+            </div>
+            
+            <p><strong>Location:</strong> <code>~/repos/ondemand-team-sync</code></p>
+            <p><strong>Port Range:</strong> 3900-3950</p>
+
+            <table>
+                <tr><th>Service</th><th>Port</th><th>URL</th></tr>
+                <tr><td>Web App</td><td>3900</td><td><code>localhost:3900</code></td></tr>
+                <tr><td>Admin Dashboard</td><td>3902</td><td><code>localhost:3902</code></td></tr>
+                <tr><td>Mobile App</td><td>3903</td><td><code>localhost:3903</code></td></tr>
+            </table>
+
+            <div class="code-block">
+                cd ~/repos/ondemand-team-sync
+                pnpm dev
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                    <line x1="8" y1="21" x2="16" y2="21"></line>
+                    <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+                <span class="card-title">onelearn-platform-foundation</span>
+            </div>
+
+            <p><strong>Location:</strong> <code>~/repos/onelearn-platform-foundation</code></p>
+            <p><strong>Port Range:</strong> 3000-3010, 5000-5100</p>
+
+            <table>
+                <tr><th>Service</th><th>Port</th><th>URL</th></tr>
+                <tr><td>Knowledge Portal</td><td>3001</td><td><code>localhost:3001</code></td></tr>
+                <tr><td>RAG Knowledge Base</td><td>3002</td><td><code>localhost:3002</code></td></tr>
+                <tr><td>Prometheus</td><td>9090</td><td><code>localhost:9090</code></td></tr>
+                <tr><td>Grafana</td><td>3000</td><td><code>localhost:3000</code></td></tr>
+            </table>
+
+            <div class="alert">
+                <strong>Infrastructure Services (Docker):</strong>
+                <br>Redis: 6379 | Kafka: 9092 | RabbitMQ: 5672, 15672
+                <br>Elasticsearch: 9200 | PostgreSQL: 5432 | MongoDB: 27017 | MySQL: 3306
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span class="card-title">sfd-pocket-poc</span>
+            </div>
+
+            <p><strong>Location:</strong> <code>~/repos/sfd-pocket-poc</code></p>
+            <p><strong>Port:</strong> 3000</p>
+
+            <div class="code-block">
+                cd ~/repos/sfd-pocket-poc
+                pnpm dev
+            </div>
+        </div>
+
+        <h2>Port Management Guidelines</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>1. Reserving a Port</h3>
+                <ul>
+                    <li>Check this registry for available ports</li>
+                    <li>Add your project to the table</li>
+                    <li>Update this document via PR</li>
+                    <li>Use consistent ports across team</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>2. Port Conflict Resolution</h3>
+                <div class="code-block">
+                    <span class="comment"># Find process using port</span>
+                    lsof -i :3000
+                    
+                    <span class="comment"># Kill process (if safe)</span>
+                    kill -9 &lt;PID&gt;
+                    
+                    <span class="comment"># Or use alternative port</span>
+                    PORT=3001 pnpm dev
+                </div>
+            </div>
+        </div>
+
+        <h2>Quick Start</h2>
+
+        <div class="code-block"
+        <span class="comment"># Terminal 1: SFD Pocket</span>
+        cd ~/repos/sfd-pocket-poc && pnpm dev
+
+        <span class="comment"># Terminal 2: OneLearn Platform</span>
+        cd ~/repos/onelearn-platform-foundation
+        docker compose -f docker-compose.dev.yml up -d
+
+        <span class="comment"># Terminal 3: Team Sync</span>
+        cd ~/repos/ondemand-team-sync && pnpm dev
+
+        <span class="comment"># Terminal 4: Infrastructure</span>
+        cd ~/server && docker compose up -d
+        </div>
+
+        <div class="footer">
+            <p><strong>Need Help?</strong> Check this registry first | <strong>Port Conflicts?</strong> Ask in #dev-infrastructure</p>
+            <p><strong>Last Updated:</strong> 2026-02-05 | <strong>Maintained by:</strong> Engineering Team</p>
+        </div>
+    </div>
+</body>
+</html>
