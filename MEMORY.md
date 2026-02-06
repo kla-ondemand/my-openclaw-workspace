@@ -5,9 +5,9 @@
 **This is CRITICAL for Tonkla's career at Learn Corporation (OneLearn):**
 
 ### Documents Created (2026-02-03):
-1. **PERFORMANCE_GOALS.md** - Complete framework for Lead Software Engineer role
-2. **MONTHLY_TRACKER.md** - Monthly scorecard for Director/CTO reports  
-3. **TRIAL_90DAYS.md** - Day-by-day guide for first 3 months
+1. **PERFORMANCE_GOALS.md** - Complete framework for Lead Software Engineer role → `performance/goals/`
+2. **MONTHLY_TRACKER.md** - Monthly scorecard for Director/CTO reports → `performance/monthly/`
+3. **TRIAL_90DAYS.md** - Day-by-day guide for first 3 months → `performance/`
 
 ### Key Reminders:
 - **Trial period success** = Technical delivery + Team leadership + Organizational impact
@@ -23,12 +23,20 @@
 
 ### Daily Activity Tracking:
 
-- **2026-02-05:** Production Readiness & Admin Portal (Day 4)
+- **2026-02-05:** 🚀 EXCEPTIONAL Productivity - Prototype Complete (Day 4)
+  - SFD Pocket: Backend + API + Tests + QA 100% complete
+  - AI Agents: 4 agents deployed, 45+ minutes runtime
+  - Output: 3,500+ lines code, 42 tests, 8,000+ words docs
+  - Team Planning: Creative Types analysis complete
+  - Documentation: SSO integration guide, Jira stories with AC/DoD
+  - Performance Score: 9.6/10 (A+)
+  - See PERFORMANCE_DAY4.md for full details
+  - Status: 2 weeks work completed in 1 day
   - SFD Pocket: CI/CD pipeline, security scanning, camera v0.2.0
   - OneLearn Platform: Admin portal with Google OAuth, Tauri app, CLI tool
   - Workspace: Port management registry for 6 projects
   - 17 commits, 12,000+ lines added across 3 repos
-  - See ACTIVITY_LOG_2026-02-05.md for full details
+  - See `projects/sfd-pocket/ACTIVITY_LOG_2026-02-05.md` for full details
 
 - **2026-02-04:** Infrastructure & Platform Foundation (Day 3)
   - Core infrastructure: MongoDB, MySQL, PostgreSQL, Nginx deployed
@@ -36,9 +44,8 @@
   - Telegram bot integration: @kla_onelearn_tech_bot operational
   - MCP server setup for shadcn/ui component registry
   - Git repo initialized with 190+ files
-  - See ACTIVITY_LOG_2026-02-04.md for full details
 
-- **2026-02-03:** Complete SFD Pocket POC development (see ACTIVITY_LOG_2026-02-03.md)
+- **2026-02-03:** Complete SFD Pocket POC development
   - 15 hours of focused work
   - 38 tests passing (100%)
   - Full documentation delivered
@@ -47,12 +54,10 @@
 **NEVER FORGET:** These goals are tied to Tonkla's career progression at OneLearn. Check in regularly on progress!
 
 ### Performance Documents Location:
-All documents are in the workspace and GitHub repo:
-- `PERFORMANCE_GOALS.md` - Goals framework
-- `MONTHLY_TRACKER.md` - Monthly reports
-- `TRIAL_90DAYS.md` - 90-day roadmap
-- `ACTIVITY_LOG_2026-02-04.md` - Day 3: Infrastructure & Platform Foundation
-- `ACTIVITY_LOG_2026-02-03.md` - Day 2: SFD Pocket POC Complete
+- `performance/goals/PERFORMANCE_GOALS.md` - Goals framework
+- `performance/monthly/MONTHLY_TRACKER.md` - Monthly reports
+- `performance/TRIAL_90DAYS.md` - 90-day roadmap
+- `projects/sfd-pocket/ACTIVITY_LOG_2026-02-05.md` - Day 4: Exceptional Productivity
 
 ---
 
@@ -139,35 +144,69 @@ docker compose -f docker-compose.dev.yml up -d
 **Trial Period:** 119 days (started 2026-02-02)  
 **Reports to:** Director & CTO (monthly)
 
-### Team Composition (Adobe Creative Types) - Updated 2026-02-05
+### Team Composition (Adobe Creative Types) - Updated 2026-02-06
 
 | Role | Nick Name | Email | Birth Year | Gender | Creative Type | Strengths |
 |------|-----------|-------|------------|--------|---------------|-----------|
-| Director | Games | games@onelearn.co | 1994 | Male | The Guide | Leadership, vision, direction |
-| Lead Software Engineer | Tonkla | tonkla@onelearn.co | 1990 | Male | The Architect | System design, structure, planning |
-| Project Manager | Ploy | ploy@onelearn.co | 1992 | Female | The Regenerator | Improvement, problem-solving |
-| Project Manager | Pam | pam@onelearn.co | 1999 | Female | The Architect | System design, structure |
-| Project Manager | Alok | alok@onelearn.co | 2001 | Male | The Architect | System design, structure |
-| Project Coordinator | Dew | dew@onelearn.co | 1996 | Female | The Guide | Coordination, communication |
-| UX/UI Designer | M | m@onelearn.co | 1998 | Male | The Regenerator | Refinement, quality |
-| UX/UI Designer | Phear | phear@onelearn.co | 2001 | Female | The Gardener | Growth, nurturing |
-| Developer | Ta | ta@onelearn.co | 2002 | Male | The Regenerator | Improvement, problem-solving |
-| Developer | Off | off@onelearn.co | 2000 | Male | The Architect | System design, structure |
+| CTO + CPO | Pei | areerat.goo@ondemand.in.th | - | Female | - | Tech strategy, Product vision |
+| Director | Games | saran.tan@ondemand.in.th | 1994 | Male | The Guide | Leadership, vision, direction |
+| Lead Software Engineer | Tonkla | pituk.kae@ondemand.in.th | 1990 | Male | The Architect | System design, structure, planning |
+| Project Manager | Ploy | suriyaporn.eam@ondemand.in.th | 1992 | Female | The Regenerator | Improvement, problem-solving |
+| Project Manager | Pam | pawarisa.wor@ondemand.in.th | 1999 | Female | The Architect | System design, structure |
+| Project Manager | Alok | apisit.sah@ondemand.in.th | 2001 | Male | The Architect | System design, structure |
+| Project Coordinator | Dew | wimonsiri.boo@ondemand.in.th | 1996 | Female | The Guide | Coordination, communication |
+| UX/UI Designer | M | apisit.wai@ondemand.in.th | 1998 | Male | The Regenerator | Refinement, quality |
+| UX/UI Designer | Phear | nawarat.see@ondemand.in.th | 2001 | Female | The Gardener | Growth, nurturing |
+| Developer | Ta | ta@ondemand.in.th | 2002 | Male | The Regenerator | Improvement, problem-solving |
+| Developer | Off | sahagan.nuy@ondemand.in.th | 2000 | Male | The Architect | System design, structure |
+
+**Team Size:** 11 คน (อัปเดต 6 ก.พ. 2026 - เพิ่ม Pei CTO+CPO)
 
 **Type Distribution:**
 - The Architect: 4 (Tonkla, Pam, Alok, Off) - Heavy on system/structure
 - The Regenerator: 3 (Ploy, M, Ta) - Good for improvement cycles
 - The Guide: 2 (Games, Dew) - Good for leadership/coordination
 - The Gardener: 1 (Phear) - Growth mindset
+- CTO/CPO: 1 (Pei) - Tech strategy & product vision
 
 **Missing Types (Gaps):**
 - **Artist** - Innovation, wild ideas, experimentation
 - **Adventurer** - Risk-taking, new tech exploration
 - **Warrior** - Execution pressure, deadline driving
+- **Communicator/Networker** - External communication, stakeholder management ⚠️ NEW
+
+**Current Workaround for Gaps:**
+- **No Warrior:** Games drives deadlines more aggressively
+- **No Communicator:** **Pam** (PM, Architect) temporarily handling external communication with stakeholders outside team/org
+  - Status: Interim solution
+  - Note: Monitor workload, consider hiring/training for this role
+
+**Future Hiring Plan:**
+- **Target:** Add new team member to fill Communicator/Networker gap
+- **Timeline:** TBD (after Trial Period stabilization)
+- **Role focus:** External stakeholder management, cross-team communication, client relations
+- **Ideal profile:** Communicator or Networker creative type, possibly with PM/BA background
+- **Status:** Planned - will discuss with Games/Director when ready to expand team
 
 **Recommendations:**
 - If no Warrior found, Games should drive deadlines more aggressively
 - If no Artist found, encourage Phear (Gardener) to explore creative ideas
+
+### 📝 Dev Team - Ta & Off (Observe Notes)
+
+**น้อง Ta (Regenerator, born 2002)**
+- **จุดแข็ง:** ปรับปรุง แก้ปัญหา ล้างสิ่งที่พัง
+- **Observe อะไร:** ดูว่าเจอปัญหาแล้วแก้ยังไง ชอบ optimize อะไร
+- **คำถามที่ควรถาม:** "ถ้าต้องทำให้ดีขึ้น คิดว่าตรงไหนควรปรับ?"
+- **คุย workflow:** อยากได้ process ที่ลื่นไหล ไม่ติดขัด
+
+**น้อง Off (Architect, born 2000)**
+- **จุดแข็ง:** System design, structure
+- **Observe อะไร:** ดูโครงสร้าง code การวาง pattern
+- **คำถามที่ควรถาม:** "ระบบนี้ถ้าต้อง scale ขึ้น คิดว่าโครงสร้างนี้พอไหม?"
+- **คุย workflow:** อยากได้โครงสร้างชัดเจน มี standard
+
+**คำเตือนสำหรับบุษบา:** อย่าลืม! Ta กับ Off เป็น dev สองคนที่พี่ต้อง observe
 
 ### Priority Documents:
 1. **TRIAL_90DAYS.md** - Daily/weekly guide for first 3 months

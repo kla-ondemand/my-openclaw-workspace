@@ -1,143 +1,235 @@
-# 📁 Workspace Index
+# 🗂️ Workspace Index - OneLearn Engineering
 
-*Last Updated: 2026-02-05*
-
-Welcome to your organized workspace! This index helps you navigate all files and folders.
+**Last Updated:** 6 กุมภาพันธ์ 2026  
+**Maintained by:** Tonkla + Busaba  
+**Purpose:** Multi-project workspace with clear separation and cross-linking
 
 ---
 
-## 📂 Directory Structure
+## 📊 Quick Navigation
+
+| โปรเจกต์หลัก | สถานะ | ลิงก์ | Priority |
+|-------------|--------|-------|----------|
+| 🤖 AI-First Team Process | 🟢 Active | [📁 projects/ai-first-team/](#1-ai-first-team-process) | 🔴 High |
+| 📱 SFD Pocket POC | 🟡 Maintenance | [📁 projects/sfd-pocket/](#2-sfd-pocket-poc) | 🟡 Medium |
+| 🏢 OneLearn Platform | 🟢 Active | [📁 projects/onelearn-platform/](#3-onelearn-platform-foundation) | 🔴 High |
+| 📈 Performance Tracking | 🟢 Active | [📁 performance/](#4-performance--trial-period) | 🔴 High |
+
+---
+
+## 📁 Project Structure
 
 ```
-~
-├── 📁 config/           # Configuration & Identity Files
-├── 📁 memory/           # Daily Logs & Long-term Memory
-├── 📁 scripts/          # Automation Scripts
-├── 📁 reports/          # Analysis Reports & CSVs
-├── 📁 data/             # Data Files & State
-├── 📁 docs/             # Documentation & Specifications
-├── 📁 diary/            # Personal Diary Entries
-├── 📁 cron/             # Cron Job Configurations
-└── 📄 INDEX.md          # This file
+workspace/
+├── 📋 INDEX.md                    ← คุณอยู่ที่นี่ (Master Index)
+├── 📖 README.md                   ← Overview ทั้งหมด
+├── 🔗 LINKS.md                    ← Cross-project references
+│
+├── 📁 projects/                   ← โฟลเดอร์โปรเจกต์หลัก
+│   ├── ai-first-team/            ← AI Process & Presentation
+│   ├── sfd-pocket/               ← SFD POC (Complete)
+│   ├── onelearn-platform/        ← Platform Foundation
+│   └── team-analysis/            ← Creative Types Analysis
+│
+├── 📁 performance/                ← Trial Period Tracking
+│   ├── goals/
+│   ├── monthly/
+│   ├── weekly/
+│   └── daily/
+│
+├── 📁 shared/                     ← เอกสารกลาง
+│   ├── templates/
+│   ├── standards/
+│   └── references/
+│
+├── 📁 archive/                    ← โปรเจกต์จบแล้ว/ไม่ active
+│
+├── 📁 config/                     ← Agent Configs
+├── 📁 memory/                     ← Session memories
+└── 📁 docs/                       ← General documentation
 ```
 
 ---
 
-## 📁 config/ - Configuration Files
+## 1. 🤖 AI-First Team Process
 
-Core configuration files that define who you are and how the system works.
+**สถานะ:** 🟢 Active (ประชุม 10:00 AM วันนี้)  
+**เป้าหมาย:** Rollout AI assistant ให้ทีม 11 คน  
+**Owner:** Tonkla (Lead)
 
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Workspace rules and conventions |
-| `BOOTSTRAP.md` | First-run setup guide (can delete after first use) |
-| `HEARTBEAT.md` | Periodic check tasks |
-| `IDENTITY.md` | Your identity (Bussaba) |
-| `SOUL.md` | Core personality and behavior |
-| `TOOLS.md` | Tool-specific configuration notes |
-| `USER.md` | Information about Tonkla |
+### 📄 Key Documents
 
----
+| เอกสาร | รายละเอียด | ลิงก์ |
+|--------|-----------|--------|
+| 🎯 Process Setup | เอกสารหลักสำหรับประชุม | [PROCESS_V01_TEAM_SETUP.md](./projects/ai-first-team/PROCESS_V01_TEAM_SETUP.md) |
+| 🎨 Presentation | Web slides สำหรับ present | [AI_FIRST_TEAM_PRESENTATION.html](./projects/ai-first-team/AI_FIRST_TEAM_PRESENTATION.html) |
+| 📝 Slide Guide | Canva/Design guide | [CANVA_SLIDES_GUIDE.md](./projects/ai-first-team/CANVA_SLIDES_GUIDE.md) |
+| 📊 Team Analysis | Creative Types + AI mapping | [TEAM_AI_MAPPING.md](./projects/ai-first-team/TEAM_AI_MAPPING.md) |
 
-## 📁 memory/ - Daily Logs
-
-Daily activity logs (YYYY-MM-DD-HHMM.md format).
-
-| File | Purpose |
-|------|---------|
-| `2026-02-03-1535.md` | Daily log - SFD Pocket POC Complete |
-| `2026-02-04-0513.md` | Daily log - Infrastructure Setup |
-| `2026-02-04-0741.md` | Daily log - Platform Foundation |
-
-> **Note:** `MEMORY.md` (curated long-term memory) is kept at root for easy access.
+### 🎯 Action Items
+- [ ] Present 10:00 AM
+- [ ] Setup AI for Ta, Off (14:00)
+- [ ] Retro 18:00
 
 ---
 
-## 📁 scripts/ - Automation Scripts
+## 2. 📱 SFD Pocket POC
 
-Shell scripts and Python scripts for various tasks.
+**สถานะ:** 🟡 Complete (95%) - Maintenance mode  
+**Live URL:** https://sfd-pocket-poc.vercel.app/  
+**GitHub:** kla-ondemand/sfd-pocket-poc
 
-| File | Purpose |
-|------|---------|
-| `analyze_all.sh` | Batch analysis script |
-| `analyze_parallel.sh` | Parallel processing analysis |
-| `analyze_readme.sh` | README analysis |
-| `analyze_repos.py` | Python repo analyzer |
-| `analyze_repos.sh` | Shell repo analyzer |
-| `check_readme.sh` | README checker |
-| `check_readme_fast.sh` | Fast README checker |
+### 📄 Key Documents
 
----
+| เอกสาร | รายละเอียด | ลิงก์ |
+|--------|-----------|--------|
+| 📋 Activity Log | บันทึกการทำงาน Day 4 | [ACTIVITY_LOG_2026-02-05.md](./projects/sfd-pocket/ACTIVITY_LOG_2026-02-05.md) |
+| 🎯 Requirements | JIRA Stories + SRS | [docs/requirements/](./projects/sfd-pocket/docs/requirements/) |
+| 🏗️ Architecture | System design | [docs/architecture/](./projects/sfd-pocket/docs/architecture/) |
+| 🧪 QA Reports | Testing results | [docs/qa/](./projects/sfd-pocket/docs/qa/) |
 
-## 📁 reports/ - Reports & Analysis
-
-Generated reports and analysis results.
-
-| File | Purpose |
-|------|---------|
-| `readme_standards_report.csv` | it-ondemand README standards analysis (100 repos) |
-| `readme_full_report.csv` | Extended README report |
-| `repo_list.txt` | List of it-ondemand repositories |
+### 🎯 Next Phase (Admin Portal)
+- [ ] Real-time dashboard
+- [ ] Analytics & reports
+- [ ] Booth management
 
 ---
 
-## 📁 data/ - Data Files
+## 3. 🏢 OneLearn Platform Foundation
 
-Data files and state storage.
+**สถานะ:** 🟢 Active Development  
+**Location:** `~/repos/onelearn-platform-foundation/`
 
-| File | Purpose |
-|------|---------|
-| `cron-daily-meme-state.json` | Cron job state |
+### 📄 Key Documents
 
----
+| เอกสาร | รายละเอียด | ลิงก์ |
+|--------|-----------|--------|
+| 🏗️ Infrastructure | Docker compose, services | [INFRASTRUCTURE.md](./projects/onelearn-platform/INFRASTRUCTURE.md) |
+| 🔐 Admin Portal | OAuth, dashboard specs | [ADMIN_PORTAL_SPEC.md](./projects/onelearn-platform/ADMIN_PORTAL_SPEC.md) |
+| 🤖 RAG System | Knowledge base docs | [RAG_SYSTEM.md](./projects/onelearn-platform/RAG_SYSTEM.md) |
+| 📱 Knowledge Apps | Tauri + CLI docs | [KNOWLEDGE_APPS.md](./projects/onelearn-platform/KNOWLEDGE_APPS.md) |
 
-## 📁 docs/ - Documentation
-
-Project specifications and documentation.
-
-| File | Purpose |
-|------|---------|
-| *(Add docs here)* | |
-
----
-
-## 📁 diary/ - Personal Diary
-
-Personal diary entries and notes.
+### 🎯 Active Development
+- [ ] Admin Portal testing
+- [ ] Knowledge Apps build pipeline
+- [ ] RAG system optimization
 
 ---
 
-## 📁 cron/ - Cron Jobs
+## 4. 📈 Performance & Trial Period
 
-Scheduled task configurations.
+**ระยะเวลา:** 119 วัน (Day 5/119)  
+**รายงาน:** Director & CTO (รายเดือน)
 
----
+### 📄 Key Documents
 
-## 🎯 Quick Access
+| เอกสาร | รายละเอียด | ลิงก์ |
+|--------|-----------|--------|
+| 🎯 Performance Goals | กรอบเป้าหมาย | [PERFORMANCE_GOALS.md](./performance/goals/PERFORMANCE_GOALS.md) |
+| 📊 Monthly Tracker | รายงานประจำเดือน | [MONTHLY_TRACKER.md](./performance/monthly/2026-02.md) |
+| 📅 90-Day Roadmap | แผน 3 เดือน | [TRIAL_90DAYS.md](./performance/TRIAL_90DAYS.md) |
+| 📝 Activity Logs | บันทึกรายวัน | [performance/daily/](./performance/daily/) |
 
-### Daily Workflow
-1. Check `memory/` for today's log
-2. Review `config/MEMORY.md` for important reminders
-3. Run scripts from `scripts/` as needed
-
-### Key Files
-- **Who am I?** → `config/IDENTITY.md`
-- **Who is Tonkla?** → `config/USER.md`
-- **What should I remember?** → `MEMORY.md` (root)
-- **Today's tasks?** → `memory/` (latest file)
-
-### Important Reports
-- [README Standards Report](reports/readme_standards_report.csv) - Analysis of 100 it-ondemand repos
+### 🎯 Trial Milestones
+- **Day 30:** First month review
+- **Day 60:** Mid-point assessment
+- **Day 90:** Critical milestone
+- **Day 119:** Trial period end
 
 ---
 
-## 📝 Notes
+## 5. 👥 Team Analysis
 
-- **Never delete** `config/IDENTITY.md`, `config/SOUL.md`, `config/USER.md`
-- **Daily logs** go in `memory/YYYY-MM-DD.md`
-- **Scripts** should be run from workspace root
-- **Reports** are automatically generated
+**Framework:** Adobe Creative Types  
+**Team Size:** 11 คน
+
+### 📄 Key Documents
+
+| เอกสาร | รายละเอียด | ลิงก์ |
+|--------|-----------|--------|
+| 🎨 Team Composition | ตาราง Creative Types | [TEAM_COMPOSITION.md](./projects/team-analysis/TEAM_COMPOSITION.md) |
+| 📝 Individual Profiles | โปรไฟล์แต่ละคน | [profiles/](./projects/team-analysis/profiles/) |
+| 🎯 Communication Guide | วิธีคุยตาม Type | [COMMUNICATION_GUIDE.md](./projects/team-analysis/COMMUNICATION_GUIDE.md) |
+
+### 🔍 Key Insights
+- **Architects:** 4 คน (Tonkla, Pam, Alok, Off)
+- **Regenerators:** 3 คน (Ploy, M, Ta)
+- **Guides:** 2 คน (Games, Dew)
+- **Gaps:** Artist, Adventurer, Warrior, Communicator
 
 ---
 
-*This index is maintained automatically. Last updated by Bussaba on 2026-02-05.*
+## 🔗 Cross-Project Links
+
+### Documents ที่เชื่อมโยงกัน
+
+```
+AI-First Team Process
+    ↳ ใช้ข้อมูลจาก: Team Analysis (Creative Types)
+    ↳ สนับสนุน: SFD Pocket (Ta, Off training)
+    ↳ รายงานผล: Performance Tracking
+
+SFD Pocket POC
+    ↳ อยู่ใน: OneLearn Platform ecosystem
+    ↳ ใช้ทีม: Team Analysis profiles
+    ↳ ติดตาม: Performance goals
+
+OneLearn Platform
+    ↳ ทีมพัฒนา: AI-First Team
+    ↳ ใช้ process: Systematic AI Development
+    ↳ รายงาน: Monthly performance
+```
+
+---
+
+## 📋 Workspace Standards
+
+### Naming Conventions
+- **Projects:** `projects/{project-name}/`
+- **Documents:** `UPPER_SNAKE_CASE.md`
+- **Daily Logs:** `YYYY-MM-DD.md`
+- **Activity Logs:** `ACTIVITY_LOG_YYYY-MM-DD.md`
+
+### Document Templates
+- [New Project Template](./shared/templates/PROJECT_TEMPLATE.md)
+- [Meeting Notes Template](./shared/templates/MEETING_TEMPLATE.md)
+- [Decision Record Template](./shared/templates/DECISION_TEMPLATE.md)
+
+### Status Indicators
+- 🟢 **Active** - กำลังทำงานอยู่
+- 🟡 **Maintenance** - จบแล้ว แต่ต้องดูแล
+- 🔴 **Blocked** - ติดปัญหา
+- ⚪ **Planned** - วางแผนไว้ ยังไม่เริ่ม
+
+---
+
+## 🔄 Daily Workflow
+
+```
+1. เช้า: เช็ค INDEX.md ดูว่าวันนี้ต้องทำอะไร
+2. เลือกโปรเจกต์: ไปที่โฟลเดอร์ projects/{name}/
+3. ทำงาน: อัปเดตเอกสารในโฟลเดอร์นั้น
+4. สรุป: อัปเดต Activity Log ใน performance/daily/
+5. ค่ำ: Review ว่าแต่ละโปรเจกต์ความคืบหน้าเท่าไหร่
+```
+
+---
+
+## 📊 Project Status Dashboard
+
+| โปรเจกต์ | ความคืบหน้า | สถานะ | Next Action |
+|---------|------------|--------|-------------|
+| AI-First Team | 80% | 🟢 | Present 10:00 AM |
+| SFD Pocket | 95% | 🟡 | Maintenance |
+| OneLearn Platform | 60% | 🟢 | Admin Portal test |
+| Performance Tracking | 40% | 🟢 | Daily logging |
+
+---
+
+**สรุป:** ใช้ Index นี้เป็น Entry point ทุกครั้งที่เริ่มทำงาน  
+**ค้นหาไม่เจอ?** ใช้ `Cmd/Ctrl + F` ค้นหาในไฟล์นี้  
+**ต้องการเพิ่มโปรเจกต์?** สร้างโฟลเดอร์ใน `projects/` และอัปเดต Index นี้
+
+---
+
+*จัดทำโดย: Busaba 🌸 | อัปเดตล่าสุด: 6 Feb 2026 07:20*
