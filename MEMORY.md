@@ -1,5 +1,9 @@
 # MEMORY.md
 
+## 🚨 URGENT / ATTENTION (2026-02-07)
+- **CRITICAL ALERT:** Google Cloud Run `learn-delivery-api` Database Timeout (Received 2026-02-06 22:16). **Action Required:** Check Cloud Console immediately.
+- **CI/CD Failure:** `sfd-pocket-poc` Quality Gate failing on main branch. **Action Required:** Fix build/tests.
+
 ## 🎯 HIGH PRIORITY - Tonkla's Performance Goals
 
 **This is CRITICAL for Tonkla's career at Learn Corporation (OneLearn):**
@@ -22,6 +26,17 @@
 - Focus on measurable business impact
 
 ### Daily Activity Tracking:
+
+- **2026-02-06:** 🧠 Strategic Vision & SFD Pocket v0.3.0 (Day 5)
+  - Vision of Engineering Process: Created comprehensive presentation & web experience
+  - Deliverables: `PROCESS_V01_TEAM_SETUP.md`, `AI_FIRST_TEAM_PRESENTATION.html`
+  - Defined AI-First Metrics: Code review <3h, Bug fix <1h, Velocity 3x
+  - Team Structure: Defined AI assistant roles for Director, PM, Lead, Devs
+  - Tech Stack: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion
+  - SFD Pocket v0.3.0: Release complete prototype, switch to PostgreSQL (Neon), new red UI theme.
+  - Resolving 10 security vulnerabilities and implementing OAuth token exchange.
+  - New Initiative: Created `ondemand-team-sync` repo.
+  - See `performance/daily/ACTIVITY_LOG_2026-02-06.md` for full details
 
 - **2026-02-05:** 🚀 EXCEPTIONAL Productivity - Prototype Complete (Day 4)
   - SFD Pocket: Backend + API + Tests + QA 100% complete

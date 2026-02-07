@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-First Team Presentation | OneLearn</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        onelearn: {
+                            red: '#D7282F',
+                            dark: '#1a1a1a',
+                            gray: '#333333',
+                            light: '#f5f5f5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Kanit:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Kanit', 'Inter', sans-serif;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .slide.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .onelearn-gradient {
+            background: linear-gradient(135deg, #D7282F 0%, #ff6b6b 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #D7282F;
+            transition: width 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .nav-dot.active {
+            background: #D7282F;
+            transform: scale(1.3);
+            border-color: white;
+        }
+        
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #D7282F;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #D7282F }
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #D7282F;
+            border: 3px solid white;
+        }
+        
+        .glass-effect {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .comparison-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .comparison-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 4px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #D7282F;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .keyboard-hint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1000;
+        }
+        
+        .presenter-badge {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #333;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-hidden">
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar" style="width: 14%"></div>
+    
+    <!-- Presenter Badge -->
+    <div class="presenter-badge">
+        <i class="fas fa-user-tie mr-2" style="color: #D7282F;"></i>
+        Tonkla | 6 Feb 2026 | 10:00 AM
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div class="nav-dots">
+        <div class="nav-dot active" onclick="goToSlide(0)"></div>
+        <div class="nav-dot" onclick="goToSlide(1)"></div>
+        <div class="nav-dot" onclick="goToSlide(2)"></div>
+        <div class="nav-dot" onclick="goToSlide(3)"></div>
+        <div class="nav-dot" onclick="goToSlide(4)"></div>
+        <div class="nav-dot" onclick="goToSlide(5)"></div>
+        <div class="nav-dot" onclick="goToSlide(6)"></div>
+        <div class="nav-dot" onclick="goToSlide(7)"></div>
+        <div class="nav-dot" onclick="goToSlide(8)"></div>
+        <div class="nav-dot" onclick="goToSlide(9)"></div>
+    </div>
+    
+    <!-- Keyboard Hint -->
+    <div class="keyboard-hint">
+        <i class="fas fa-keyboard mr-2"></i>
+        ← → หรือ ลูกศรเพื่อเปลี่ยนหน้า | ESC สำหรับ fullscreen
+    </div>
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide active onelearn-gradient items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 left-20 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="text-center z-10 px-8">
+            <div class="floating-icon text-8xl mb-8">
+                🚀
+            </div>
+            <h1 class="text-7xl font-bold mb-6 tracking-tight">
+                Engineering Process v0.1
+            </h1>
+            <h2 class="text-5xl font-light mb-8 opacity-90">
+                AI-First Team Structure
+            </h2>
+            <div class="glass-effect rounded-2xl p-8 inline-block">
+                <p class="text-3xl mb-4">ทีมที่มี AI Assistant เป็นคู่คิด</p>
+                <p class="text-4xl font-bold" style="color: #ffeb3b;">ทำงานเร็วขึ้น 3-4x</p>
+            </div>
+            <div class="mt-12 flex justify-center gap-8 text-lg opacity-80">
+                <span><i class="fas fa-calendar mr-2"></i>6 กุมภาพันธ์ 2026</span>
+                <span><i class="fas fa-clock mr-2"></i>10:00 AM</span>
+                <span><i class="fas fa-hourglass-half mr-2"></i>10 นาที</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2: Vision -->
+    <section class="slide bg-white items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Vision</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">🎯 วิสัยทัศน์</h2>
+            </div>
+            
+            <div class="text-center mb-16">
+                <p class="text-6xl font-bold text-onelearn-red leading-tight">
+                    "ทุกคนมี AI Assistant<br>เป็นคู่คิด"
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <div class="stat-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-rocket text-3xl text-onelearn-red"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">เร็วขึ้น 3-4 เท่า</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">ลดเวลาทำงานซ้ำๆ ให้ AI ช่วยทำส่วนที่ใช้เวลา</p>
+                </div>
+                
+                <div class="stat-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-brain text-3xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Focus ที่การตัดสินใจ</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">ไม่ใช่การทำงานซ้ำ แต่เป็นการคิดและสร้างสรรค์</p>
+                </div>
+                
+                <div class="stat-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-3xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Quality ดีขึ้น</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">AI ช่วย review code หา bug และ suggest การปรับปรุง</p>
+                </div>
+                
+                <div class="stat-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-3xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">ทีมแข็งแกร่ง</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">ทุกคนมีคู่คิดที่ช่วยให้ทำงานได้ดีขึ้น</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 3: Philosophy - Do More With Less -->
+    <section class="slide bg-gradient-to-br from-onelearn-red to-red-600 items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 left-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-8 max-w-6xl z-10">
+            <div class="text-center mb-10">
+                <span class="text-white text-xl font-semibold tracking-widest uppercase opacity-80">Philosophy</span>
+                <h2 class="text-6xl font-bold mt-4">💎 Do More With Less</h2>
+                <p class="text-2xl mt-4 opacity-90">ปรัชญาการทำงานของ Engineering Team</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-compress-arrows-alt text-4xl mr-4 text-yellow-300"></i>
+                        <div>
+                            <h3 class="text-3xl font-bold">Maximize Output</h3>
+                            <p class="text-lg opacity-80">ผลลัพธ์ที่มากขึ้น</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-lg">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>High-impact tasks ก่อนเสมอ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>Foster innovation ในทีม</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>Value ที่ส่งมอบให้ลูกค้า</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="glass-effect rounded-2xl p-8">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-minimize text-4xl mr-4 text-yellow-300"></i>
+                        <div>
+                            <h3 class="text-3xl font-bold">Minimize Input</h3>
+                            <p class="text-lg opacity-80">ทรัพยากรที่ใช้น้อยลง</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-lg">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>ลดเวลาทำงานซ้ำซาก</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>ลดต้นทุนที่ไม่จำเป็น</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-300 mr-3 mt-1"></i>
+                            <span>Streamline processes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="glass-effect rounded-2xl p-8 text-center">
+                <h3 class="text-2xl font-bold mb-4">
+                    <i class="fas fa-lightbulb text-yellow-300 mr-2"></i>
+                    Mindful & Efficient Approach
+                </h3>
+                <p class="text-xl leading-relaxed">
+                    การทำงานที่มีสติ มีประสิทธิภาพ ไม่ใช่การทำงานหนักขึ้น 
+                    แต่เป็นการทำงาน <span class="text-yellow-300 font-bold">"ฉลาดขึ้น"</span> ด้วย AI เป็นตัวช่วย
+                </p>
+                <div class="mt-6 flex justify-center gap-8">
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-yellow-300">↓ 60%</p>
+                        <p class="text-sm opacity-80">เวลาทำงาน</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-yellow-300">↑ 300%</p>
+                        <p class="text-sm opacity-80">Productivity</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-4xl font-bold text-yellow-300">↑ 200%</p>
+                        <p class="text-sm opacity-80">Quality</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 4: Before/After -->
+    <section class="slide bg-gray-50 items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Comparison</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">📊 Before vs After</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-8">
+                <!-- Before -->
+                <div class="comparison-card bg-white rounded-3xl p-8 shadow-lg border-t-4 border-red-400">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-times text-3xl text-red-500"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-700">Before</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 bg-red-50 rounded-xl">
+                            <i class="fas fa-code text-red-400 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Code Review</p>
+                                <p class="text-2xl font-bold text-red-500">2-3 วัน</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-red-50 rounded-xl">
+                            <i class="fas fa-bug text-red-400 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Debug</p>
+                                <p class="text-2xl font-bold text-red-500">4-8 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-red-50 rounded-xl">
+                            <i class="fas fa-vial text-red-400 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">เขียน Test</p>
+                                <p class="text-2xl font-bold text-red-500">2-3 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-red-50 rounded-xl">
+                            <i class="fas fa-file-alt text-red-400 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Documentation</p>
+                                <p class="text-2xl font-bold text-red-500">1-2 วัน</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 bg-red-50 rounded-xl">
+                            <i class="fas fa-tachometer-alt text-red-400 mr-4 text-xl"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Sprint Velocity</p>
+                                <p class="text-2xl font-bold text-red-500">10 pts/week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- After -->
+                <div class="comparison-card bg-white rounded-3xl p-8 shadow-lg border-t-4" style="border-color: #D7282F;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mr-4" style="background: rgba(215, 40, 47, 0.1);">
+                            <i class="fas fa-check text-3xl" style="color: #D7282F;"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold" style="color: #D7282F;">After</h3>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                            <i class="fas fa-code mr-4 text-xl" style="color: #D7282F;"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Code Review</p>
+                                <p class="text-2xl font-bold" style="color: #D7282F;">2-3 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                            <i class="fas fa-bug mr-4 text-xl" style="color: #D7282F;"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Debug</p>
+                                <p class="text-2xl font-bold" style="color: #D7282F;">30 นาที - 1 ชม.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                            <i class="fas fa-vial mr-4 text-xl" style="color: #D7282F;"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">เขียน Test</p>
+                                <p class="text-2xl font-bold" style="color: #D7282F;">15-30 นาที</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                            <i class="fas fa-file-alt mr-4 text-xl" style="color: #D7282F;"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Documentation</p>
+                                <p class="text-2xl font-bold" style="color: #D7282F;">2-3 ชั่วโมง</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                            <i class="fas fa-tachometer-alt mr-4 text-xl" style="color: #D7282F;"></i>
+                            <div>
+                                <p class="font-semibold text-gray-700">Sprint Velocity</p>
+                                <p class="text-2xl font-bold" style="color: #D7282F;">30+ pts/week</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <p class="text-2xl font-bold text-gray-600">
+                    <i class="fas fa-arrow-right mx-4 text-onelearn-red"></i>
+                    ประหยัดเวลา <span class="text-4xl text-onelearn-red">60-80%</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 5: Team Structure -->
+    <section class="slide bg-gradient-to-br from-gray-50 to-gray-100 items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Team</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">👥 AI-First Team Structure</h2>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <!-- C-Level -->
+                <div class="grid grid-cols-2 gap-12 mb-8">
+                    <div class="text-center">
+                        <div class="team-avatar mx-auto mb-4 text-4xl" style="background: #1a1a1a; color: white;">👩‍💼</div>
+                        <h3 class="text-2xl font-bold text-gray-800">Pei</h3>
+                        <p class="text-gray-600">CTO + CPO</p>
+                        <p class="text-xs text-gray-500 mt-1">areerat.goo@ondemand.in.th</p>
+                        <div class="mt-2 inline-block px-4 py-2 rounded-full text-white text-sm" style="background: #1a1a1a;">
+                            <i class="fas fa-robot mr-2"></i>AI: Tech Strategy & Product
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="team-avatar bg-purple-500 text-white mx-auto mb-4 text-4xl">👨‍💼</div>
+                        <h3 class="text-2xl font-bold text-gray-800">Games</h3>
+                        <p class="text-gray-600">Director</p>
+                        <p class="text-xs text-gray-500 mt-1">saran.tan@ondemand.in.th</p>
+                        <div class="mt-2 inline-block px-4 py-2 bg-purple-100 rounded-full text-purple-700 text-sm">
+                            <i class="fas fa-robot mr-2"></i>AI: Strategy & Reporting
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Connector -->
+                <div class="w-1 h-8 bg-gray-300 mb-8"></div>
+                
+                <!-- Middle Row -->
+                <div class="grid grid-cols-3 gap-12 mb-8">
+                    <div class="text-center">
+                        <div class="team-avatar bg-blue-500 text-white mx-auto mb-4">👩‍💼</div>
+                        <h3 class="text-xl font-bold text-gray-800">Ploy</h3>
+                        <p class="text-gray-600">PM</p>
+                        <div class="mt-2 inline-block px-3 py-1 bg-blue-100 rounded-full text-blue-700 text-xs">
+                            AI: Sprint Planning
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="team-avatar mx-auto mb-4 text-4xl" style="background: #D7282F; color: white;">👨‍💻</div>
+                        <h3 class="text-xl font-bold" style="color: #D7282F;">Tonkla</h3>
+                        <p class="text-gray-600">Lead Engineer</p>
+                        <div class="mt-2 inline-block px-3 py-1 rounded-full text-white text-xs" style="background: #D7282F;">
+                            AI: Busaba 🌸
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="team-avatar bg-green-500 text-white mx-auto mb-4">👥</div>
+                        <h3 class="text-xl font-bold text-gray-800">Developers</h3>
+                        <p class="text-gray-600">Ta, Off, ...</p>
+                        <div class="mt-2 inline-block px-3 py-1 bg-green-100 rounded-full text-green-700 text-xs">
+                            AI: Coding + Process
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Summary -->
+                <div class="glass-effect rounded-2xl p-8 mt-8 max-w-3xl">
+                    <h3 class="text-2xl font-bold text-center mb-6 text-gray-800">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                        ทีม 11 คน = 11 AI Assistants
+                    </h3>
+                    <div class="grid grid-cols-3 gap-6 text-center">
+                        <div>
+                            <p class="text-4xl font-bold" style="color: #D7282F;">4x</p>
+                            <p class="text-gray-600">เร็วขึ้น</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold" style="color: #D7282F;">100%</p>
+                            <p class="text-gray-600">มี AI</p>
+                        </div>
+                        <div>
+                            <p class="text-4xl font-bold" style="color: #D7282F;">0</p>
+                            <p class="text-gray-600">คนถูกทดแทน</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 6: Workflow -->
+    <section class="slide bg-white items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Process</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">🔄 Daily Workflow with AI</h2>
+            </div>
+            
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div class="absolute left-8 top-0 bottom-0 w-1 bg-gray-200"></div>
+                
+                <!-- Step 1 -->
+                <div class="relative flex items-start mb-8 pl-20">
+                    <div class="step-number absolute left-0">1</div>
+                    <div class="flex-1 bg-gradient-to-r from-orange-50 to-orange-100 rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">🌅</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Morning Standup <span class="text-orange-600">(10:00 AM)</span></h3>
+                        </div>
+                        <p class="text-gray-600 mb-3">บอก AI: <em class="bg-white px-2 py-1 rounded">"วันนี้จะทำ [งาน] เสร็จ [กี่โมง]"</em></p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-orange-200 rounded-full text-sm text-orange-800">📝 จด sprint board</span>
+                            <span class="px-3 py-1 bg-orange-200 rounded-full text-sm text-orange-800">⏰ เตือนเวลา</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="relative flex items-start mb-8 pl-20">
+                    <div class="step-number absolute left-0">2</div>
+                    <div class="flex-1 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">💻</span>
+                            <h3 class="text-2xl font-bold text-gray-800">During Development</h3>
+                        </div>
+                        <p class="text-gray-600 mb-3">ติดปัญหา → ถาม AI ได้เลย</p>
+                        <div class="space-y-2">
+                            <div class="bg-white rounded-lg p-3 text-sm font-mono text-blue-800">
+                                <i class="fas fa-terminal mr-2"></i>@coding-assistant ช่วยดู error นี้
+                            </div>
+                            <div class="bg-white rounded-lg p-3 text-sm font-mono text-blue-800">
+                                <i class="fas fa-terminal mr-2"></i>@coding-assistant เขียน test ให้
+                            </div>
+                        </div>
+                        <p class="mt-3 text-blue-600 font-semibold">AI ตอบใน 1-2 นาที ⚡</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="relative flex items-start mb-8 pl-20">
+                    <div class="step-number absolute left-0">3</div>
+                    <div class="flex-1 bg-gradient-to-r from-green-50 to-green-100 rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">✅</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Before Commit</h3>
+                        </div>
+                        <p class="text-gray-600 mb-3">AI Auto-Check:</p>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="flex items-center bg-white rounded-lg p-3">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm">TypeScript errors?</span>
+                            </div>
+                            <div class="flex items-center bg-white rounded-lg p-3">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm">Test passing?</span>
+                            </div>
+                            <div class="flex items-center bg-white rounded-lg p-3">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm">Code style?</span>
+                            </div>
+                            <div class="flex items-center bg-white rounded-lg p-3">
+                                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                                <span class="text-sm">Documentation?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="relative flex items-start pl-20">
+                    <div class="step-number absolute left-0">4</div>
+                    <div class="flex-1 bg-gradient-to-r from-purple-50 to-purple-100 rounded-2xl p-6 card-hover">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">🌙</span>
+                            <h3 class="text-2xl font-bold text-gray-800">End of Day</h3>
+                        </div>
+                        <p class="text-gray-600 mb-3">บอก AI สรุปงาน:</p>
+                        <div class="bg-white rounded-lg p-3 mb-3 text-sm font-mono text-purple-800">
+                            <i class="fas fa-comment mr-2"></i>"วันนี้ทำอะไรเสร็จบ้าง ติดตรงไหน"
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-200 rounded-full text-sm text-purple-800">📊 Update Jira</span>
+                            <span class="px-3 py-1 bg-purple-200 rounded-full text-sm text-purple-800">📧 ส่ง report</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 7: Tools -->
+    <section class="slide bg-gray-50 items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Tools</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">🛠️ AI Tools สำหรับแต่ละคน</h2>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-8">
+                <!-- Developers -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-code text-4xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Developers</h3>
+                        <p class="text-gray-500">Ta, Off, ...</p>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-bold text-gray-800 flex items-center">
+                                <i class="fas fa-robot mr-2 text-green-600"></i>Coding Assistant
+                            </h4>
+                            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                <li>• Claude / GPT / Copilot</li>
+                                <li>• Code generation</li>
+                                <li>• Code review</li>
+                                <li>• Debug & Write tests</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-bold text-gray-800 flex items-center">
+                                <i class="fas fa-robot mr-2 text-blue-600"></i>Process Assistant
+                            </h4>
+                            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                <li>• จดบันทึก (Telegram/Slack)</li>
+                                <li>• เตือนเวลา</li>
+                                <li>• สรุปรายงาน</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PM -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tasks text-4xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Project Manager</h3>
+                        <p class="text-gray-500">Ploy</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <h4 class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-robot mr-2 text-blue-600"></i>PM Assistant
+                        </h4>
+                        <ul class="text-sm text-gray-600 mt-2 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-chart-line mr-2 text-blue-400"></i>
+                                Sprint report
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-chart-bar mr-2 text-blue-400"></i>
+                                Velocity prediction
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-sticky-note mr-2 text-blue-400"></i>
+                                Meeting notes
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-square mr-2 text-blue-400"></i>
+                                Task tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Director -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg card-hover">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-chess-king text-4xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">Director</h3>
+                        <p class="text-gray-500">Games</p>
+                    </div>
+                    
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <h4 class="font-bold text-gray-800 flex items-center">
+                            <i class="fas fa-robot mr-2 text-purple-600"></i>Strategy Assistant
+                        </h4>
+                        <ul class="text-sm text-gray-600 mt-2 space-y-2">
+                            <li class="flex items-center">
+                                <i class="fas fa-chart-pie mr-2 text-purple-400"></i>
+                                Strategic reports
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-search mr-2 text-purple-400"></i>
+                                Competitive analysis
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-comments mr-2 text-purple-400"></i>
+                                Meeting summaries
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-bullseye mr-2 text-purple-400"></i>
+                                Goal tracking
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <div class="inline-block glass-effect rounded-2xl p-6">
+                    <p class="text-xl text-gray-700">
+                        <i class="fas fa-key mr-2 text-onelearn-red"></i>
+                        <strong>API Key:</strong> ขอจาก Tonkla | <strong>Setup time:</strong> < 1 ชั่วโมง/คน
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 8: Systematic AI Development (for Devs) -->
+    <section class="slide bg-gradient-to-br from-red-50 to-orange-50 items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-8">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">For Developers</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">⚡ Systematic AI Development</h2>
+                <p class="text-xl text-gray-600 mt-2">ไม่ใช่ "Vibe Coding" ไปวันๆ แต่ทำงานกับ AI อย่างเป็นระบบ</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <!-- ❌ Don't: Vibe Coding -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border-l-4 border-red-400">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-times text-3xl text-red-500"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">❌ Don't: Vibe Coding</h3>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-400 mr-3 mt-1"></i>
+                            <span class="text-gray-700">ถาม AI ไปเรื่อย ไม่มีแผน</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-400 mr-3 mt-1"></i>
+                            <span class="text-gray-700">Copy-paste code โดยไม่เข้าใจ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-400 mr-3 mt-1"></i>
+                            <span class="text-gray-700">แก้ bug ตามที่ AI บอก ไม่คิดเอง</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-400 mr-3 mt-1"></i>
+                            <span class="text-gray-700">ไม่มี documentation ไม่มี test</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-times-circle text-red-400 mr-3 mt-1"></i>
+                            <span class="text-gray-700">"แค่ให้มันทำงานได้" (ไม่สน maintainability)</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 p-4 bg-red-50 rounded-xl">
+                        <p class="text-red-700 text-sm font-semibold">
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            ผลลัพธ์: Technical debt, code ที่ maintain ไม่ได้, ไม่เรียนรู้
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- ✅ Do: Systematic AI -->
+                <div class="bg-white rounded-3xl p-8 shadow-lg border-l-4" style="border-color: #D7282F;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center mr-4" style="background: rgba(215, 40, 47, 0.1);">
+                            <i class="fas fa-check text-3xl" style="color: #D7282F;"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800">✅ Do: Systematic AI</h3>
+                    </div>
+                    
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1" style="color: #D7282F;"></i>
+                            <span class="text-gray-700"><strong>Plan first:</strong> บอก AI ว่าอยากได้อะไร มี requirements ชัดเจน</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1" style="color: #D7282F;"></i>
+                            <span class="text-gray-700"><strong>Understand:</strong> อ่านและเข้าใจ code ที่ AI ให้มา</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1" style="color: #D7282F;"></i>
+                            <span class="text-gray-700"><strong>Review:</strong> ตรวจสอบว่า code มีปัญหาอะไรไหม</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1" style="color: #D7282F;"></i>
+                            <span class="text-gray-700"><strong>Test & Document:</strong> ทดสอบและเขียน doc เสมอ</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle mr-3 mt-1" style="color: #D7282F;"></i>
+                            <span class="text-gray-700"><strong>Learn:</strong> ใช้ AI เป็น tutor ไม่ใช่แค่เครื่องมือ</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-6 p-4 rounded-xl" style="background: rgba(215, 40, 47, 0.05);">
+                        <p class="text-sm font-semibold" style="color: #D7282F;">
+                            <i class="fas fa-trophy mr-2"></i>
+                            ผลลัพธ์: Code คุณภาพสูง, maintainable, พัฒนาทักษะตัวเอง
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- The Systematic Process -->
+            <div class="bg-white rounded-2xl p-6 shadow-lg">
+                <h3 class="text-xl font-bold text-center mb-4 text-gray-800">
+                    <i class="fas fa-cogs text-onelearn-red mr-2"></i>
+                    ขั้นตอนการทำงานกับ AI แบบเป็นระบบ (Ta, Off)
+                </h3>
+                
+                <div class="grid grid-cols-5 gap-4">
+                    <div class="text-center p-4 bg-gray-50 rounded-xl">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                            <span class="text-xl font-bold text-blue-600">1</span>
+                        </div>
+                        <p class="font-semibold text-sm">Plan</p>
+                        <p class="text-xs text-gray-500">เขียน spec สั้นๆ ก่อนถาม AI</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gray-50 rounded-xl">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                            <span class="text-xl font-bold text-blue-600">2</span>
+                        </div>
+                        <p class="font-semibold text-sm">Generate</p>
+                        <p class="text-xs text-gray-500">ให้ AI สร้าง code/boilerplate</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gray-50 rounded-xl">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                            <span class="text-xl font-bold text-blue-600">3</span>
+                        </div>
+                        <p class="font-semibold text-sm">Review</p>
+                        <p class="text-xs text-gray-500">อ่านทำความเข้าใจ + ตรวจสอบ</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gray-50 rounded-xl">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                            <span class="text-xl font-bold text-blue-600">4</span>
+                        </div>
+                        <p class="font-semibold text-sm">Test</p>
+                        <p class="text-xs text-gray-500">เขียน test + ทดสอบจริง</p>
+                    </div>
+                    
+                    <div class="text-center p-4 bg-gray-50 rounded-xl">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-2">
+                            <span class="text-xl font-bold text-blue-600">5</span>
+                        </div>
+                        <p class="font-semibold text-sm">Learn</p>
+                        <p class="text-xs text-gray-500">สรุปสิ่งที่เรียนรู้จาก AI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 9: Timeline -->
+    <section class="slide bg-gradient-to-br from-gray-50 to-white items-center justify-center">
+        <div class="container mx-auto px-8 max-w-6xl">
+            <div class="text-center mb-12">
+                <span class="text-onelearn-red text-xl font-semibold tracking-widest uppercase">Roadmap</span>
+                <h2 class="text-5xl font-bold mt-4 text-gray-800">📅 3-Week Rollout Plan</h2>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-8 mb-12">
+                <!-- Week 1 -->
+                <div class="relative">
+                    <div class="bg-yellow-100 rounded-2xl p-6 h-full card-hover border-t-4 border-yellow-400">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">🟡</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Week 1</h3>
+                        </div>
+                        <p class="text-yellow-700 font-semibold mb-4">SETUP</p>
+                        <p class="text-gray-500 text-sm mb-4">6-12 Feb 2026</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">แจก AI Assistant ทุกคน</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Training 30 นาที</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Setup tools (Ta, Off)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-yellow-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">ลองใช้งานจริง 1 งาน</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Week 2 -->
+                <div class="relative">
+                    <div class="bg-orange-100 rounded-2xl p-6 h-full card-hover border-t-4 border-orange-400">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">🟠</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Week 2</h3>
+                        </div>
+                        <p class="text-orange-700 font-semibold mb-4">PRACTICE</p>
+                        <p class="text-gray-500 text-sm mb-4">13-19 Feb 2026</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">ใช้ AI ทุกวัน</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">เก็บ feedback</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">ปรับ process</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-orange-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Measure productivity</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Week 3 -->
+                <div class="relative">
+                    <div class="bg-green-100 rounded-2xl p-6 h-full card-hover border-t-4 border-green-400">
+                        <div class="flex items-center mb-4">
+                            <span class="text-3xl mr-3">🟢</span>
+                            <h3 class="text-2xl font-bold text-gray-800">Week 3</h3>
+                        </div>
+                        <p class="text-green-700 font-semibold mb-4">OPTIMIZE</p>
+                        <p class="text-gray-500 text-sm mb-4">20-26 Feb 2026</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Fine-tune prompts</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Document best practices</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Share learnings</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                <span class="text-gray-700">Scale ไปทีมอื่น</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Today's Schedule -->
+            <div class="onelearn-gradient rounded-2xl p-8 text-white">
+                <h3 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-calendar-day mr-3"></i>
+                    กำหนดการวันนี้ (6 Feb)
+                </h3>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold">10:00</p>
+                        <p class="text-sm opacity-90">ประชุมนี้</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold">10:30</p>
+                        <p class="text-sm opacity-90">Demo AI</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold">14:00</p>
+                        <p class="text-sm opacity-90">Ta, Off ลองใช้</p>
+                    </div>
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <p class="text-3xl font-bold">18:00</p>
+                        <p class="text-sm opacity-90">Retro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const progressBar = document.getElementById('progressBar');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+            
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+            
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                updateSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlide();
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlide();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            } else if (e.key === 'Escape') {
+                toggleFullscreen();
+            }
+        });
+
+        // Click to navigate
+        document.addEventListener('click', (e) => {
+            const x = e.clientX;
+            const width = window.innerWidth;
+            
+            if (x > width * 0.8) {
+                nextSlide();
+            } else if (x < width * 0.2) {
+                prevSlide();
+            }
+        });
+
+        // Fullscreen
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Initialize
+        updateSlide();
+        
+        // Auto-hide keyboard hint after 5 seconds
+        setTimeout(() => {
+            document.querySelector('.keyboard-hint').style.opacity = '0';
+        }, 5000);
+    <!-- SLIDE 10: Team Summary -->
+    <section class="slide onelearn-gradient items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-64 h-64 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-10 right-10 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-8 max-w-6xl z-10">
+            <div class="text-center mb-8">
+                <span class="text-white text-xl font-semibold tracking-widest uppercase opacity-80">Team</span>
+                <h2 class="text-5xl font-bold mt-2">👥 OneLearn Engineering Team</h2>
+                <p class="text-xl mt-2 opacity-90">11 คน + 11 AI Assistants = AI-First Team</p>
+            </div>
+            
+            <!-- C-Level -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-3 opacity-80 text-center">🎯 C-Level</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-4xl mb-2">👩‍💼</div>
+                        <p class="font-bold">Pei</p>
+                        <p class="text-sm opacity-80">CTO + CPO</p>
+                        <p class="text-xs opacity-60">areerat.goo@</p>
+                        <div class="mt-2 text-xs bg-white/20 rounded-full px-2 py-1 inline-block">
+                            🤖 Tech Strategy
+                        </div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-4 text-center">
+                        <div class="text-4xl mb-2">👨‍💼</div>
+                        <p class="font-bold">Games</p>
+                        <p class="text-sm opacity-80">Director</p>
+                        <p class="text-xs opacity-60">saran.tan@</p>
+                        <div class="mt-2 text-xs bg-white/20 rounded-full px-2 py-1 inline-block">
+                            🤖 Strategy
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Management -->
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-3 opacity-80 text-center">📋 Management</h3>
+                <div class="grid grid-cols-4 gap-3">
+                    <div class="glass-effect rounded-xl p-3 text-center">
+                        <div class="text-3xl mb-1">👩‍💼</div>
+                        <p class="font-semibold text-sm">Ploy</p>
+                        <p class="text-xs opacity-70">PM</p>
+                        <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Sprint</div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-3 text-center">
+                        <div class="text-3xl mb-1">👩‍💼</div>
+                        <p class="font-semibold text-sm">Pam</p>
+                        <p class="text-xs opacity-70">PM</p>
+                        <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 +External</div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-3 text-center">
+                        <div class="text-3xl mb-1">👨‍💼</div>
+                        <p class="font-semibold text-sm">Alok</p>
+                        <p class="text-xs opacity-70">PM</p>
+                        <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 System</div>
+                    </div>
+                    
+                    <div class="glass-effect rounded-xl p-3 text-center">
+                        <div class="text-3xl mb-1">👩‍💼</div>
+                        <p class="font-semibold text-sm">Dew</div>
+                        <p class="text-xs opacity-70">Coordinator</p>
+                        <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Comm</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Engineering & Design -->
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 opacity-80 text-center">💻 Engineering</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="glass-effect rounded-xl p-3 text-center border-2 border-yellow-300">
+                            <div class="text-3xl mb-1">👨‍💻</div>
+                            <p class="font-bold text-sm">Tonkla</p>
+                            <p class="text-xs opacity-70">Lead Engineer</p>
+                            <div class="mt-1 text-xs bg-yellow-400/30 rounded-full px-2 py-0.5 inline-block font-semibold">🌸 Busaba</div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-3 text-center">
+                            <div class="text-3xl mb-1">👨‍💻</div>
+                            <p class="font-semibold text-sm">Ta</p>
+                            <p class="text-xs opacity-70">Developer</p>
+                            <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Code</div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-3 text-center">
+                            <div class="text-3xl mb-1">👨‍💻</div>
+                            <p class="font-semibold text-sm">Off</p>
+                            <p class="text-xs opacity-70">Developer</p>
+                            <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Code</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 opacity-80 text-center">🎨 Design</h3>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="glass-effect rounded-xl p-3 text-center">
+                            <div class="text-3xl mb-1">👨‍🎨</div>
+                            <p class="font-semibold text-sm">M</p>
+                            <p class="text-xs opacity-70">UX/UI</p>
+                            <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Design</div>
+                        </div>
+                        
+                        <div class="glass-effect rounded-xl p-3 text-center">
+                            <div class="text-3xl mb-1">👩‍🎨</div>
+                            <p class="font-semibold text-sm">Phear</p>
+                            <p class="text-xs opacity-70">UX/UI</p>
+                            <div class="mt-1 text-xs bg-white/20 rounded-full px-2 py-0.5 inline-block">🤖 Design</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="text-center mt-6">
+                <div class="glass-effect rounded-2xl p-4 inline-block">
+                    <p class="text-lg font-semibold">
+                        🚀 Together: AI-First Team | 
+                        <span class="text-yellow-300">4x Faster</span> | 
+                        <span class="text-yellow-300">100% Productivity</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </script>
+</body>
+</html>
