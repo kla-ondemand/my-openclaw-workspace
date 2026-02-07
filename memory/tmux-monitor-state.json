@@ -1,0 +1,27 @@
+{
+  "agents-1770444001": {
+    "status": "stuck",
+    "last_check": "2026-02-07T14:55:00+07:00",
+    "message": "Still waiting for user input (Claude Code validation prompt)."
+  },
+  "agents-docker-dev-deploy-1770359878": {
+    "status": "idle",
+    "last_check": "2026-02-07T14:55:00+07:00",
+    "message": "Session idle at command prompt."
+  },
+  "agents-verify-test-1770359892": {
+    "status": "idle",
+    "last_check": "2026-02-07T14:55:00+07:00",
+    "message": "Session idle at command prompt."
+  },
+  "agents-verify-test-1770359915": {
+    "status": "serving_report",
+    "last_check": "2026-02-07T14:55:00+07:00",
+    "message": "Serving Playwright report at http://localhost:9323."
+  },
+  "me": {
+    "status": "idle",
+    "last_check": "2026-02-07T14:55:00+07:00",
+    "message": "Session idle."
+  }
+}
